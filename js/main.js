@@ -31,6 +31,25 @@ if (hamburger && mobileNav) {
   });
 }
 
+// --- Scroll to Top ---
+const scrollTopBtn = document.createElement('button');
+scrollTopBtn.className = 'scroll-top';
+scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
+scrollTopBtn.innerHTML = '↑';
+document.body.appendChild(scrollTopBtn);
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 500) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
 // --- Scroll Animations ---
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -56,6 +75,34 @@ if (particlesContainer) {
   }
 }
 
+// --- FAQ Accordion ---
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(fi => fi.classList.remove('open'));
+    // Toggle current
+    if (!isOpen) {
+      item.classList.add('open');
+    }
+  });
+});
+
+// --- FAQ Accordion ---
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
+    // Toggle current
+    if (!isOpen) {
+      item.classList.add('open');
+    }
+  });
+});
+
 // --- Form: Send to WhatsApp ---
 function buildWhatsAppMsg(formId) {
   const name  = document.getElementById(formId + 'Name')?.value || '';
@@ -75,6 +122,27 @@ function buildWhatsAppMsg(formId) {
   if (extra) text += `Details: ${extra}`;
 
   return `https://wa.me/919066151831?text=${text}`;
+}
+
+// --- Review Form ---
+const reviewForm = document.getElementById('reviewForm');
+if (reviewForm) {
+  reviewForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('reviewName').value;
+    const city = document.getElementById('reviewCity').value;
+    const visa = document.getElementById('reviewVisaType').value;
+    const rating = document.getElementById('reviewRating').value;
+    const text = document.getElementById('reviewText').value;
+    const stars = '★'.repeat(parseInt(rating)) + '☆'.repeat(5 - parseInt(rating));
+    let msg = `Hi AToZ Pro, I'd like to leave a review!%0A%0A`;
+    msg += `Name: ${name}%0A`;
+    msg += `City: ${city}%0A`;
+    msg += `Visa Type: ${visa}%0A`;
+    msg += `Rating: ${stars} (${rating}/5)%0A%0A`;
+    msg += `Review:%0A${text}`;
+    window.open(`https://wa.me/919066151831?text=${msg}`, '_blank');
+  });
 }
 
 // Hero form
