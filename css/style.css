@@ -212,6 +212,13 @@ img {
   z-index: 1;
 }
 
+.logo-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
 .logo-text {
   display: flex;
   flex-direction: column;
