@@ -96,6 +96,7 @@ function buildWhatsAppMsg(formId) {
   const email = document.getElementById(formId + 'Email')?.value || '';
   const visa  = document.getElementById(formId + 'VisaType')?.value || '';
   const date  = document.getElementById(formId + 'TravelDate')?.value || '';
+  const country = document.getElementById(formId + 'Country')?.value || '';
   const msgEl = document.getElementById(formId + 'Message');
   const extra = msgEl ? msgEl.value : '';
 
@@ -103,6 +104,7 @@ function buildWhatsAppMsg(formId) {
   text += `Name: ${name}%0A`;
   text += `Phone: ${phone}%0A`;
   if (email) text += `Email: ${email}%0A`;
+  if (country) text += `Country: ${country}%0A`;
   text += `Visa Type: ${visa}%0A`;
   if (date) text += `Travel Date: ${date}%0A`;
   if (extra) text += `Details: ${extra}`;
