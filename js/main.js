@@ -89,20 +89,6 @@ document.querySelectorAll('.faq-question').forEach(btn => {
   });
 });
 
-// --- FAQ Accordion ---
-document.querySelectorAll('.faq-question').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.parentElement;
-    const isOpen = item.classList.contains('open');
-    // Close all
-    document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
-    // Toggle current
-    if (!isOpen) {
-      item.classList.add('open');
-    }
-  });
-});
-
 // --- Form: Send to WhatsApp ---
 function buildWhatsAppMsg(formId) {
   const name  = document.getElementById(formId + 'Name')?.value || '';
