@@ -231,16 +231,170 @@
         </div>
       </div>
 
-      <!-- How to Apply Video -->
+      <!-- Promo Video Experience -->
       <div class="how-apply-video animate-on-scroll" style="margin-top:60px;text-align:center;">
         <h3 style="font-size:28px;margin-bottom:8px;color:var(--primary-dark);">📹 How to Apply — Watch & Learn</h3>
         <p style="color:var(--text-light);margin-bottom:24px;font-size:15px;">A quick walkthrough of our visa application process.</p>
-        <div class="video-wrapper" style="max-width:800px;margin:0 auto;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);background:#000;">
-          <video controls preload="metadata" poster="img/dubai-skyline.jpg" style="width:100%;display:block;">
-            <source src="img/how-to-apply.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        
+        <div class="promo-video-container" id="promoVideo">
+          <div class="promo-video-stage" id="promoStage">
+            
+            <!-- Scene 1: Opening -->
+            <div class="promo-scene scene1 active" data-scene="0">
+              <div class="promo-scene-bg"></div>
+              <div class="promo-scene-overlay"></div>
+              <div class="promo-particles" id="scene1Particles"></div>
+              <div class="promo-scene-content">
+                <div class="promo-title">Dreaming of Dubai?</div>
+                <div class="promo-desc">Planning your Dubai trip? Let AToZ Pro Services make your visa process stress-free and simple.</div>
+              </div>
+            </div>
+
+            <!-- Scene 2: Share Details -->
+            <div class="promo-scene scene2" data-scene="1">
+              <div class="promo-scene-bg"></div>
+              <div class="promo-scene-overlay"></div>
+              <div class="promo-scene-content">
+                <div class="promo-subtitle">Step 1</div>
+                <div class="promo-title">Share Details</div>
+                <div class="promo-desc">Send your travel &amp; visa requirements</div>
+                <div class="whatsapp-mockup">
+                  <div class="whatsapp-header">
+                    <div class="whatsapp-avatar">🎷</div>
+                    <div>
+                      <div class="whatsapp-name">AToZ Pro Services</div>
+                      <div class="whatsapp-status">online</div>
+                    </div>
+                  </div>
+                  <div class="whatsapp-body">
+                    <div class="whatsapp-msg received">Hi! How can we help with your Dubai visa? ✈️</div>
+                    <div class="whatsapp-msg sent">I need a tourist visa for Dubai</div>
+                    <div class="whatsapp-msg received">Great! Share your passport copy &amp; travel dates 📋</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scene 3: Document Review -->
+            <div class="promo-scene scene3" data-scene="2">
+              <div class="promo-scene-bg"></div>
+              <div class="promo-scene-overlay"></div>
+              <div class="promo-scene-content">
+                <div class="promo-subtitle">Step 2</div>
+                <div class="promo-title">Document Review</div>
+                <div class="promo-desc">Expert guidance for smooth approval</div>
+                <div class="doc-review-visual">
+                  <div class="doc-icon">📄</div>
+                  <div class="doc-icon">🛂</div>
+                  <div class="doc-icon">📋</div>
+                  <div class="doc-icon">✅</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scene 4: Application Filed -->
+            <div class="promo-scene scene4" data-scene="3">
+              <div class="promo-scene-bg"></div>
+              <div class="promo-scene-overlay"></div>
+              <div class="promo-scene-content">
+                <div class="promo-subtitle">Step 3</div>
+                <div class="promo-title">Application Filed</div>
+                <div class="promo-desc">Real-time tracking included</div>
+                <div class="laptop-mockup">
+                  <div class="laptop-screen">
+                    <div class="laptop-bar">
+                      <div class="laptop-dot red"></div>
+                      <div class="laptop-dot yellow"></div>
+                      <div class="laptop-dot green"></div>
+                    </div>
+                    <div class="laptop-check">✓</div>
+                    <div class="laptop-status-text">Application Submitted!</div>
+                  </div>
+                  <div class="uae-flag-bar">
+                    <span></span><span></span><span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scene 5: Visa Delivered -->
+            <div class="promo-scene scene5" data-scene="4">
+              <div class="promo-scene-bg"></div>
+              <div class="promo-scene-overlay"></div>
+              <div class="promo-scene-content">
+                <div class="promo-subtitle">Step 4</div>
+                <div class="promo-title">Visa Delivered</div>
+                <div class="promo-desc">You're Dubai-bound! ✈️</div>
+                <div class="visa-stamp">
+                  <div class="visa-stamp-icon">🛂</div>
+                  <div class="visa-stamp-text">VISA APPROVED</div>
+                  <div class="visa-stamp-sub">United Arab Emirates</div>
+                  <div class="visa-approved-badge">APPROVED</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scene 6: Trust Montage -->
+            <div class="promo-scene scene6" data-scene="5">
+              <div class="promo-scene-bg"></div>
+              <div class="promo-scene-overlay"></div>
+              <div class="promo-scene-content">
+                <div class="promo-title" style="font-size:32px;">Stress-Free • Comfortable • Budget-Friendly</div>
+                <div class="promo-desc">Your journey starts with confidence</div>
+                <div class="montage-grid">
+                  <div class="montage-item">👨‍👩‍👧‍👦<span class="montage-label">Families</span></div>
+                  <div class="montage-item">💑<span class="montage-label">Couples</span></div>
+                  <div class="montage-item">💼<span class="montage-label">Business</span></div>
+                  <div class="montage-item">🌴<span class="montage-label">Lifestyle</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Scene 7: Closing CTA -->
+            <div class="promo-scene scene7" data-scene="6">
+              <div class="promo-scene-bg"></div>
+              <div class="promo-scene-overlay"></div>
+              <div class="promo-particles" id="scene7Particles"></div>
+              <div class="promo-scene-content">
+                <div class="promo-logo-mark">AZ</div>
+                <div class="promo-title" style="font-size:36px;">AToZ Pro Services</div>
+                <div class="promo-stats-row">
+                  <div class="promo-stat-item">
+                    <strong>8+</strong>
+                    <small>Years of Trust</small>
+                  </div>
+                  <div class="promo-stat-item">
+                    <strong>5,000+</strong>
+                    <small>Happy Customers</small>
+                  </div>
+                  <div class="promo-stat-item">
+                    <strong>98%</strong>
+                    <small>Approval Rate</small>
+                  </div>
+                </div>
+                <a href="https://wa.me/971521888594?text=Hi%20AToZ%20Pro%2C%20I%20need%20help%20with%20my%20Dubai%20visa" class="promo-cta-btn" target="_blank">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Contact Us Today
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="promo-progress">
+            <div class="promo-progress-bar" id="promoProgress"></div>
+          </div>
+
+          <!-- Controls -->
+          <div class="promo-controls">
+            <button class="promo-ctrl-btn" id="promoPrev" aria-label="Previous scene">◀</button>
+            <div class="promo-scene-dots" id="promoDots"></div>
+            <button class="promo-ctrl-btn" id="promoPause" aria-label="Pause">⏸</button>
+            <button class="promo-ctrl-btn" id="promoNext" aria-label="Next scene">▶</button>
+          </div>
         </div>
+
         <div style="margin-top:24px;">
           <a href="contact.html" class="btn btn-accent">Start Your Application Now →</a>
         </div>

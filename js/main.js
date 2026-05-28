@@ -133,6 +133,208 @@ if (reviewForm) {
   });
 }
 
+// ============================================
+// PROMO VIDEO EXPERIENCE — Timeline Engine
+// ============================================
+const promoVideo = (() => {
+  const container = document.getElementById('promoVideo');
+  if (!container) return;
+
+  const scenes = container.querySelectorAll('.promo-scene');
+  const progressBar = document.getElementById('promoProgress');
+  const dotsContainer = document.getElementById('promoDots');
+  const prevBtn = document.getElementById('promoPrev');
+  const nextBtn = document.getElementById('promoNext');
+  const pauseBtn = document.getElementById('promoPause');
+
+  if (!scenes.length) return;
+
+  const SCENE_DURATION = 5000; // 5 seconds per scene
+  const TOTAL_SCENES = scenes.length;
+
+  let currentScene = 0;
+  let isPlaying = true;
+  let sceneTimer = null;
+  let progressTimer = null;
+  let progressStart = 0;
+  let progressPaused = false;
+  let pausedProgress = 0;
+
+  // Create dots
+  scenes.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'promo-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goToScene(i));
+    dotsContainer.appendChild(dot);
+  });
+
+  // Create particles for scene 1 & 7
+  function createParticles(containerId) {
+    const wrap = document.getElementById(containerId);
+    if (!wrap) return;
+    for (let i = 0; i < 20; i++) {
+      const p = document.createElement('div');
+      p.className = 'promo-particle';
+      p.style.left = Math.random() * 100 + '%';
+      p.style.animationDuration = (Math.random() * 8 + 6) + 's';
+      p.style.animationDelay = (Math.random() * 5) + 's';
+      p.style.width = p.style.height = (Math.random() * 3 + 2) + 'px';
+      wrap.appendChild(p);
+    }
+  }
+  createParticles('scene1Particles');
+  createParticles('scene7Particles');
+
+  // Floating emojis for select scenes
+  const sceneEmojis = {
+    0: ['✈️', '🌆', '🌅'],
+    1: ['📱', '💬', '✉️'],
+    2: ['📋', '🔍', '✅'],
+    3: ['💻', '📤', '🇦🇪'],
+    4: ['🎉', '🛂', '✨'],
+    5: ['👨‍👩‍👧', '💼', '🌴'],
+    6: ['🎷', '🏆', '💫']
+  };
+
+  function spawnEmojis(sceneIdx) {
+    const emojis = sceneEmojis[sceneIdx];
+    if (!emojis) return;
+    const stage = document.getElementById('promoStage');
+    emojis.forEach((emoji, i) => {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.className = 'float-emoji';
+        el.textContent = emoji;
+        el.style.left = (20 + Math.random() * 60) + '%';
+        el.style.bottom = '20%';
+        el.style.zIndex = '3';
+        stage.appendChild(el);
+        setTimeout(() => el.remove(), 3000);
+      }, i * 600);
+    });
+  }
+
+  function updateDots(idx) {
+    const dots = dotsContainer.querySelectorAll('.promo-dot');
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+  }
+
+  function showScene(idx) {
+    scenes.forEach((s, i) => {
+      s.classList.toggle('active', i === idx);
+    });
+    updateDots(idx);
+    spawnEmojis(idx);
+  }
+
+  function startProgress(duration) {
+    if (progressTimer) cancelAnimationFrame(progressTimer);
+    progressStart = performance.now() - pausedProgress;
+    progressPaused = false;
+
+    function tick(now) {
+      if (progressPaused) return;
+      const elapsed = now - progressStart;
+      const pct = Math.min((elapsed / duration) * 100, 100);
+      progressBar.style.width = pct + '%';
+      if (pct < 100 && isPlaying) {
+        progressTimer = requestAnimationFrame(tick);
+      }
+    }
+    progressTimer = requestAnimationFrame(tick);
+  }
+
+  function pauseProgress() {
+    progressPaused = true;
+    pausedProgress = performance.now() - progressStart;
+    if (progressTimer) cancelAnimationFrame(progressTimer);
+  }
+
+  function startSceneTimer() {
+    if (sceneTimer) clearTimeout(sceneTimer);
+    sceneTimer = setTimeout(() => {
+      if (isPlaying) {
+        goToScene((currentScene + 1) % TOTAL_SCENES);
+      }
+    }, SCENE_DURATION);
+  }
+
+  function goToScene(idx) {
+    currentScene = idx;
+    pausedProgress = 0;
+    showScene(idx);
+    startProgress(SCENE_DURATION);
+    startSceneTimer();
+  }
+
+  function togglePause() {
+    isPlaying = !isPlaying;
+    if (isPlaying) {
+      pauseBtn.textContent = '⏸';
+      startSceneTimer();
+      startProgress(SCENE_DURATION);
+    } else {
+      pauseBtn.textContent = '▶';
+      clearTimeout(sceneTimer);
+      pauseProgress();
+    }
+  }
+
+  // Controls
+  prevBtn.addEventListener('click', () => {
+    goToScene((currentScene - 1 + TOTAL_SCENES) % TOTAL_SCENES);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    goToScene((currentScene + 1) % TOTAL_SCENES);
+  });
+
+  pauseBtn.addEventListener('click', togglePause);
+
+  // Keyboard
+  container.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') nextBtn.click();
+    if (e.key === 'ArrowLeft') prevBtn.click();
+    if (e.key === ' ') { e.preventDefault(); togglePause(); }
+  });
+  container.setAttribute('tabindex', '0');
+
+  // Pause on hover
+  container.addEventListener('mouseenter', () => {
+    if (isPlaying) {
+      clearTimeout(sceneTimer);
+      pauseProgress();
+    }
+  });
+
+  container.addEventListener('mouseleave', () => {
+    if (isPlaying) {
+      startSceneTimer();
+      startProgress(SCENE_DURATION);
+    }
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  container.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) nextBtn.click();
+      else prevBtn.click();
+    }
+  }, { passive: true });
+
+  // Start
+  progressBar.style.width = '0%';
+  spawnEmojis(0);
+  startProgress(SCENE_DURATION);
+  startSceneTimer();
+})();
+
 // Hero form
 const heroForm = document.getElementById('heroForm');
 if (heroForm) {
