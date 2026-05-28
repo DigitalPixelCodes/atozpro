@@ -1447,6 +1447,39 @@ img {
   100% { background-position: 200% center; }
 }
 
+/* ---------- Video Section ---------- */
+.how-apply-video {
+  margin-top: 60px;
+  text-align: center;
+}
+.how-apply-video .video-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: #000;
+}
+.how-apply-video video {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius);
+}
+
+/* ---------- Google Maps in Footer ---------- */
+.footer-map {
+  margin-top: 24px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.footer-map iframe {
+  width: 100%;
+  height: 180px;
+  border: none;
+  display: block;
+}
+
 /* ---------- Service Detail (Services Page) ---------- */
 .service-detail {
   display: grid;

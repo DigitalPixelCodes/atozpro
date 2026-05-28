@@ -109,7 +109,7 @@ function buildWhatsAppMsg(formId) {
   if (date) text += `Travel Date: ${date}%0A`;
   if (extra) text += `Details: ${extra}`;
 
-  return `https://wa.me/919066151831?text=${text}`;
+  return `https://wa.me/971521888594?text=${text}`;
 }
 
 // --- Review Form ---
@@ -129,7 +129,7 @@ if (reviewForm) {
     msg += `Visa Type: ${visa}%0A`;
     msg += `Rating: ${stars} (${rating}/5)%0A%0A`;
     msg += `Review:%0A${text}`;
-    window.open(`https://wa.me/919066151831?text=${msg}`, '_blank');
+    window.open(`https://wa.me/971521888594?text=${msg}`, '_blank');
   });
 }
 
